@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, pid, imgUrl, title, toUrl, weight, isBanner, updatTime, creatTime
+    id, pid, imgUrl, title, toUrl, weight, isBanner, updatTime, creatTime,content
   </sql>
   <sql id="Blob_Column_List" >
     content

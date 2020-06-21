@@ -15,4 +15,6 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.aaron.resource.website.pojo
+  configuration:
+       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 

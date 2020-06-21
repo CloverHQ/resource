@@ -18,24 +18,38 @@
         标题：<input type="text" placeholder="标题" name="title"/><br/>
         权重：<input type="number" placeholder="权重" name="weight"/><br/>
         内容：<textarea name="content" cols="200" rows="10"></textarea><br/>
+        <div th:if="${isAddBanner} !=1">
+            分类：<select name="pid">
+            <option th:each="titleBean : ${titleList}" th:text="${titleBean.title}" th:value="${titleBean.id}"></option>
+        </select><br/>
+        </div>
+        <input type="hidden" name="imgurl"/>
+        <input type="hidden" name="id"/>
+        是否是轮播图：<select name="isbanner">
+        <option value="0" th:selected="${isAddBanner}== 0">否</option>
+        <option value="1" th:selected="${isAddBanner} == 1">是</option>
+    </select>
     </div>
     <div th:if="${article} != null">
-        图片：<input type="file" name="logo"/><br/>
+        图片：<input type="file" name="logo" th:value="${article.imgurl}"/><br/>
+            <div id="dd"></div>
         标题：<input type="text" placeholder="标题" name="title" th:value="${article.title}"/><br/>
         权重：<input type="number" placeholder="权重" name="weight" th:value="${article.weight}"/><br/>
-        内容：<textarea name="content" cols="200" rows="10" th:value="${article.content}"></textarea><br/>
+        内容：<textarea name="content" cols="200" rows="10" th:text="${article.content}"></textarea><br/>
+        <div th:if="${isAddBanner} !=1">
         分类：<select name="pid">
         <option th:each="titleBean : ${titleList}" th:text="${titleBean.title}" th:value="${titleBean.id}"
-                th:selected="${article.id} == ${titleBean.id} ? true :false"></option>
+                th:selected="${article.pid} == ${titleBean.id}"></option>
     </select><br/>
+        </div>
         是否是轮播图：<select name="isbanner">
-        <option th:if="${!article.isbanner}" th:value="article.isbanner ? 1 : 0"
-                th:selected="article.isbanner"></option>
-        <input th:if="${isAddBanner == 1}" type="hidden" name="isbanner" value="1"/>
-        <input type="hidden" name="imgurl" th:value="${article.imgurl}"/>
-        <input type="hidden" name="id" th:value="${article.id}"/>
+        <option th:selected="${article.isbanner} == true" value="1">是</option>
+        <option th:selected="${article.isbanner} == false" value="0">否</option>
     </select><br/>
+        <input type="hidden" name="imgurl" th:src="${article.imgurl}"/>
+        <input type="hidden" name="id" th:value="${article.id}"/>
     </div>
+    <input type="hidden" name="isbanner" th:value="${isAddBanner == 1} ? 1 :0"/>
     <input type="submit" value="提交"/>
 </form>
 

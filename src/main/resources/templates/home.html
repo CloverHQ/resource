@@ -42,14 +42,14 @@
             <td>${itemBean.content}</td>
             <td><a href="/item/showArticleSave?id=${itemBean.id}">编辑</a></td>
             <td>
-                <button onclick="deleteById([[${itemBean.id}]], '${itemBean.title}')">删除</button>
+                <button onclick="deleteById([[${itemBean.id}]], [[${itemBean.title}]])">删除</button>
             </td>
         </tr>
     </tbody>
 </table>
 
 <div id="pageCntainner" style="text-align: center; margin-top: 20px;">
-    <a th:each="index:${totalCount}" onclick="page(${index})">${index}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a th:each="index:${totalCount}" onclick="page([[${index}]])">${index}&nbsp;&nbsp;&nbsp;&nbsp;</a>
     当前页面第<font id="nowPage" style="color: red;">1</font>页面
 </div>
 </body>

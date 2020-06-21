@@ -7,7 +7,22 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "托福资料",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/list0.jpg",
+      "selectedIconPath": "images/list0.jpg"
+    },{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/list0.jpg",
+      "selectedIconPath": "images/list0.jpg"
+    }
+  
+  ]
+  }
 }
