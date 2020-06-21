@@ -1,0 +1,45 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <title></title>
+    <style type="text/css">
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table th:include="head"></table><br/><br/>
+<br/><br/>
+<div style="text-align: center;"><a href="/type/showSavaPage">增加分类</a></div>
+<br/><br/>
+<table cellpadding="0" cellspacing="0" border="1" width="500px" align="center">
+    <caption align="top">分类管理系统</caption>
+    <tr>
+        <th>名称</th>
+        <th>权重</th>
+        <th>编辑</th>
+        <th>删除</th>
+    </tr>
+    <tbody id="containner">
+    <tr th:each="titleBean,status:${titleList}">
+        <td th:text="${titleBean.title}"></td>
+        <td th:text="${titleBean.weight}"></td>
+        <td><a th:href="@{/type/showSavaPage(id=${titleBean.id})}">编辑</a></td>
+        <td>
+            <button th:onclick="deleteById([[${titleBean.id}]], [[${titleBean.title}]])">删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+<script>
+    function deleteById(id, title) {
+        var isDelete = window.confirm("确定删除" + title + "吗");
+        if (isDelete) {
+            window.location.href = "/type/deleteById?id=" + id;
+        }
+    }
+</script>
+</html>

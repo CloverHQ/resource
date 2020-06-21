@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <title></title>
+    <style type="text/css">
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table th:include="head"></table>
+<br/><br/>
+<form method="post" action="/item/save" enctype="multipart/form-data">
+    <div th:if="${article} == null">
+        图片：<input type="file" name="logo"/><br/>
+        标题：<input type="text" placeholder="标题" name="title"/><br/>
+        权重：<input type="number" placeholder="权重" name="weight"/><br/>
+        内容：<textarea name="content" cols="200" rows="10"></textarea><br/>
+    </div>
+    <div th:if="${article} != null">
+        图片：<input type="file" name="logo"/><br/>
+        标题：<input type="text" placeholder="标题" name="title" th:value="${article.title}"/><br/>
+        权重：<input type="number" placeholder="权重" name="weight" th:value="${article.weight}"/><br/>
+        内容：<textarea name="content" cols="200" rows="10" th:value="${article.content}"></textarea><br/>
+        分类：<select name="pid">
+        <option th:each="titleBean : ${titleList}" th:text="${titleBean.title}" th:value="${titleBean.id}"
+                th:selected="${article.id} == ${titleBean.id} ? true :false"></option>
+    </select><br/>
+        是否是轮播图：<select name="isbanner">
+        <option th:if="${!article.isbanner}" th:value="article.isbanner ? 1 : 0"
+                th:selected="article.isbanner"></option>
+        <input th:if="${isAddBanner == 1}" type="hidden" name="isbanner" value="1"/>
+        <input type="hidden" name="imgurl" th:value="${article.imgurl}"/>
+        <input type="hidden" name="id" th:value="${article.id}"/>
+    </select><br/>
+    </div>
+    <input type="submit" value="提交"/>
+</form>
+
+<div style="color: red" th:value="${error}"></div>
+</body>
+</html>
