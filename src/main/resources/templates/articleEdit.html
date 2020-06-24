@@ -31,7 +31,7 @@
     </select>
     </div>
     <div th:if="${article} != null">
-        图片：<input type="file" name="logo" th:value="${article.imgurl}"/><br/>
+        图片：<input type="file" name="logo"/><br/>
             <div id="dd"></div>
         标题：<input type="text" placeholder="标题" name="title" th:value="${article.title}"/><br/>
         权重：<input type="number" placeholder="权重" name="weight" th:value="${article.weight}"/><br/>
@@ -46,7 +46,7 @@
         <option th:selected="${article.isbanner} == true" value="1">是</option>
         <option th:selected="${article.isbanner} == false" value="0">否</option>
     </select><br/>
-        <input type="hidden" name="imgurl" th:src="${article.imgurl}"/>
+        <input type="hidden" name="imgurl" th:value="${article.imgurl}"/>
         <input type="hidden" name="id" th:value="${article.id}"/>
     </div>
     <input type="hidden" name="isbanner" th:value="${isAddBanner == 1} ? 1 :0"/>
