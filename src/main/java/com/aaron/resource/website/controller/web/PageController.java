@@ -57,7 +57,7 @@ public class PageController {
 
         model.addAttribute("titleList", titleList);
 
-        TbType defaultTitle = null;
+        TbType defaultTitle;
         if (id == 0){
             defaultTitle = titleList.get(0);
             model.addAttribute("topTitle", defaultTitle);

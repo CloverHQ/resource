@@ -4,6 +4,7 @@ import com.aaron.resource.website.pojo.TbArticle;
 import com.aaron.resource.website.pojo.TbType;
 import com.aaron.resource.website.service.ArticleService;
 import com.aaron.resource.website.service.TypeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping("/item/")
+@Slf4j
 public class ArticleController {
 
     @Autowired
@@ -63,6 +65,7 @@ public class ArticleController {
             @RequestParam(value = "logo", required = false) MultipartFile logo,
             HttpServletRequest request){
         try {
+            // TODO 上传图片 修改为阿里oss
             if (logo != null && !logo.isEmpty()){
                 String rootPath = request.getSession().getServletContext().getRealPath("/img");
                 String oldName = logo.getOriginalFilename();
@@ -89,7 +92,7 @@ public class ArticleController {
 
             return "redirect:/home?id="+tbArticle.getPid();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("", e);
             model.addAttribute("article", tbArticle);
             model.addAttribute("error", "插入或更新失败 "+e.getMessage()+"");
             return "articleEdit";
@@ -101,7 +104,7 @@ public class ArticleController {
         try {
             articleService.deleteById(id);
         } catch (Exception e){
-            e.printStackTrace();
+            log.error("", e);
         }
 
         if (pid == null){

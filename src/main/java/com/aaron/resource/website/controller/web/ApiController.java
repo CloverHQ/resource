@@ -75,8 +75,7 @@ public class ApiController {
     ) {
         List<TbArticle> tbArticleList = articleService.listById(id, now);
 
-        for (int i = 0; i < tbArticleList.size(); i++) {
-            TbArticle tbArticle = tbArticleList.get(i);
+        for (TbArticle tbArticle : tbArticleList) {
             if (tbArticle.getContent() != null && tbArticle.getContent().length() > 50) {
                 tbArticle.setContent(tbArticle.getContent().substring(0, 50));
             }
@@ -102,8 +101,7 @@ public class ApiController {
     ) {
         List<TbArticle> tbArticleList = articleService.listByIdApi(id, loadTime + 1);
 
-        for (int i = 0; i < tbArticleList.size(); i++) {
-            TbArticle tbArticle = tbArticleList.get(i);
+        for (TbArticle tbArticle : tbArticleList) {
             if (tbArticle.getContent() != null && tbArticle.getContent().length() > 50) {
                 tbArticle.setContent(tbArticle.getContent().substring(0, 50));
             }
