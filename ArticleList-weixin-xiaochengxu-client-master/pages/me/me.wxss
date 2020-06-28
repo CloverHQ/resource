@@ -2,7 +2,7 @@
 .container{
   display: flex;
   flex-direction: column;
-  border:red 1pt solid;
+  justify-content: center;
 }
 .container view{
   width:100%; /**宽度*/
@@ -10,10 +10,19 @@
   text-align: center; /**文字居中*/
   line-height: 100rpx; /**文字居中*/
 }
+
+.container van-cell-group {
+  width:100%;
+}
+
 .headImg{
   margin-top: 50rpx;
 }
 .nickName{
   margin-top: 25rpx;
   margin-bottom: 25rpx;
+}
+.cellTitle{
+  text-align: left !important;
+
 }

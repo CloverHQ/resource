@@ -3,6 +3,10 @@
 		<van-loading slot="loading" type="spinner" size="20" vertical />
 	</van-image>
 	<van-view class="nickName">{{nickName}}</van-view>
-	<van-button open-type="getUserInfo" bindgetuserinfo="bindUserInfo">授权登陆</van-button>
-	<van-button type="primary" bindtap="userLogin" class="user_login">用户登陆</van-button>
+	<van-cell-group>
+		<van-cell center title-class="cellTitle" is-link link-type="navigateTo" url="../logs/logs" title="积分详情" />
+		<van-cell  title-class="cellTitle" center is-link title="单元格" value="内容" label="描述信息"/>
+	</van-cell-group>
+	<!-- <van-button open-type="getUserInfo" bindgetuserinfo="bindUserInfo">授权登陆</van-button>
+	<van-button type="primary" bindtap="userLogin" class="user_login">用户登陆</van-button> -->
 </view>
