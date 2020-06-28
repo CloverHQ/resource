@@ -5,7 +5,7 @@ spring:
       suffix: .jsp
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/weichatarticle?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/weichatarticle?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
     username: root
     password: root
     driver-class-name: org.gjt.mm.mysql.Driver
