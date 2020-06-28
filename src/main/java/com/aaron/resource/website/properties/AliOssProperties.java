@@ -1,4 +1,4 @@
-package com.aaron.resource.website.config;
+package com.aaron.resource.website.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

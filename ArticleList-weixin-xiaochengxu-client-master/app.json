@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/article/detail"
+    "pages/article/detail",
+    "pages/me/me"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "托福资料",
+    "navigationBarTitleText": "十八的学习资料",
     "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
@@ -14,13 +15,13 @@
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-      "iconPath": "images/list0.jpg",
-      "selectedIconPath": "images/list0.jpg"
+      "iconPath": "images/normal.png",
+      "selectedIconPath": "images/click.png"
     },{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "images/list0.jpg",
-      "selectedIconPath": "images/list0.jpg"
+      "pagePath": "pages/me/me",
+      "text": "个人信息",
+      "iconPath": "images/normal.png",
+      "selectedIconPath": "images/click.png"
     }
   
   ]

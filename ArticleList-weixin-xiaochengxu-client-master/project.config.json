@@ -12,7 +12,7 @@
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": false,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -32,7 +32,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.1",
-	"appid": "wxc864ed930011c0df",
+	"appid": "wx9372320c4f888b3f",
 	"projectname": "ArticleList-weixin-xiaochengxu-client-master",
 	"debugOptions": {
 		"hidedInDevtools": []

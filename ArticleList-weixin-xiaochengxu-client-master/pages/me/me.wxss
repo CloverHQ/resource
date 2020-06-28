@@ -1,0 +1,19 @@
+/* pages/me/me.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  border:red 1pt solid;
+}
+.container view{
+  width:100%; /**宽度*/
+  height:100rpx; /**高度指定*/
+  text-align: center; /**文字居中*/
+  line-height: 100rpx; /**文字居中*/
+}
+.headImg{
+  margin-top: 50rpx;
+}
+.nickName{
+  margin-top: 25rpx;
+  margin-bottom: 25rpx;
+}

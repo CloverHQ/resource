@@ -1,14 +1,12 @@
 package com.aaron.resource.website.controller.web;
 
-import com.aaron.resource.website.config.AliOssProperties;
+import com.aaron.resource.website.properties.AliOssProperties;
 import com.aaron.resource.website.pojo.TbArticle;
 import com.aaron.resource.website.pojo.TbType;
 import com.aaron.resource.website.service.ArticleService;
 import com.aaron.resource.website.service.TypeService;
 import com.aliyun.oss.OSS;
-import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSClientBuilder;
-import com.aliyun.oss.model.PutObjectRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,14 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by huangtao on 17/1/7.

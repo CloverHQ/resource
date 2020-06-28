@@ -1,0 +1,14 @@
+{
+  "name": "articlelist-weixin-xiaochengxu-client-master",
+  "version": "1.0.0",
+  "description": "微信小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/weapp": "^1.3.3"
+  }
+}

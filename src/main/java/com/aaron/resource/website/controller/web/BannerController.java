@@ -2,14 +2,12 @@ package com.aaron.resource.website.controller.web;
 
 import com.aaron.resource.website.pojo.TbArticle;
 import com.aaron.resource.website.service.ArticleService;
-import com.aaron.resource.website.utils.ConstantPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -25,15 +23,8 @@ public class BannerController {
 
     @RequestMapping("list")
     @ResponseBody
-    public List<TbArticle> showIndex(HttpServletResponse response) {
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json;charset=UTF-8");
-        List<TbArticle> tbArticles = articleService.listBanner();
-
-        for (TbArticle tbArticle : tbArticles) {
-            tbArticle.setImgurl(ConstantPool.IP + tbArticle.getImgurl());
-        }
-        return tbArticles;
+    public List<TbArticle> showIndex() {
+        return articleService.listBanner();
     }
 
 

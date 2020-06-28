@@ -3,13 +3,13 @@ package com.aaron.resource.website.controller.web;
 import com.aaron.resource.website.pojo.ListByIdBean;
 import com.aaron.resource.website.pojo.TbArticle;
 import com.aaron.resource.website.pojo.TbType;
+import com.aaron.resource.website.properties.MiniProgramProperties;
 import com.aaron.resource.website.service.ArticleService;
 import com.aaron.resource.website.service.TypeService;
 import com.aaron.resource.website.utils.ConstantPool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
@@ -25,6 +25,18 @@ public class ApiController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private MiniProgramProperties miniProgramProperties;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @GetMapping("/wechat/user/login/{code}")
+    public Object wechatLogin(@PathVariable String code) {
+        final String url = "https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code";
+        return restTemplate.getForEntity(url, String.class, miniProgramProperties.getAppId(), miniProgramProperties.getAppSecret(), code).getBody();
+    }
+
     @RequestMapping("findByIdApi")
     public TbArticle findByIdApi(
             HttpServletResponse response,
@@ -39,7 +51,6 @@ public class ApiController {
         SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy-MM-dd");
         tbArticle.setDate(simpleFormatter.format(tbArticle.getUpdattime()));
 
-        tbArticle.setImgurl(ConstantPool.IP + tbArticle.getImgurl());
         return tbArticle;
     }
 
@@ -48,13 +59,7 @@ public class ApiController {
     public List<TbArticle> showIndex(HttpServletResponse response) {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=UTF-8");
-        List<TbArticle> tbArticles = articleService.listBanner();
-
-        for (TbArticle tbArticle : tbArticles) {
-            tbArticle.setImgurl(ConstantPool.IP + tbArticle.getImgurl());
-        }
-
-        return tbArticles;
+        return articleService.listBanner();
     }
 
     @Autowired
@@ -106,7 +111,6 @@ public class ApiController {
                 tbArticle.setContent(tbArticle.getContent().substring(0, 50));
             }
 
-            tbArticle.setImgurl(ConstantPool.IP + tbArticle.getImgurl());
         }
         return tbArticleList;
 

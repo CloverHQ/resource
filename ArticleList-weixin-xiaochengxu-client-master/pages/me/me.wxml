@@ -1,0 +1,8 @@
+<view class="container">
+	<van-image class="headImg" round width="5rem" height="5rem" src="{{avatarUrl}}">
+		<van-loading slot="loading" type="spinner" size="20" vertical />
+	</van-image>
+	<van-view class="nickName">{{nickName}}</van-view>
+	<van-button open-type="getUserInfo" bindgetuserinfo="bindUserInfo">授权登陆</van-button>
+	<van-button type="primary" bindtap="userLogin" class="user_login">用户登陆</van-button>
+</view>
