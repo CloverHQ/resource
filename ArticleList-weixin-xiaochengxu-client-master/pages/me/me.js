@@ -7,7 +7,8 @@ Page({
    */
   data: {
     avatarUrl:'',
-    nickName:''
+    nickName:'',
+    score: 0
   },
   bindUserInfo:function(e){
       let _this = this;
@@ -37,16 +38,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this;
-      wx.getUserInfo({
-        success:function(res) {
-          console.log(res)
-          _this.setData({
-            avatarUrl: res.userInfo.avatarUrl,
-            nickName: res.userInfo.nickName
-          })
+     // 判断是否授权
+    wx.getSetting({
+      success: function(res) {
+        console.log(res)
+        if (res.authSetting['scope.userInfo']) {
+            console.log('用户授权了')
+            // 调用接口获取用户信息
+        } else{
+            // 用户未授权 跳到授权页
+            wx.navigateTo({
+              url: 'login',
+            })
         }
-      })
+      }
+    })
+
   },
 
   /**

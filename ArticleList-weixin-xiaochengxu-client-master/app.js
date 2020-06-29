@@ -6,5 +6,8 @@ App({
   getUserInfo:function(cb){
   },
   globalData:{
+    avatarUrl:'',
+    nickName:'',
+    score: 0
   }
 })

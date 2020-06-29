@@ -29,3 +29,15 @@ CREATE TABLE tb_article(
   updatTime datetime DEFAULT NULL,
   creatTime datetime DEFAULT NULL
 ) DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tb_wx_account` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `province` varchar(20) DEFAULT NULL,
+  `city` varchar(20) DEFAULT NULL,
+  `avatarUrl` varchar(500) DEFAULT NULL,
+  `gender` tinyint DEFAULT NULL,
+  `nickName` varchar(50) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `language` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
