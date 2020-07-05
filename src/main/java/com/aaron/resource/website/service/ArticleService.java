@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface ArticleService {
 
-    public List<TbArticle> listById(int id);
+    List<TbArticle> listById(int id);
 
-    public List<TbArticle> listById(int id, int now);
+    List<TbArticle> listById(int id, int now);
 
     void save(TbArticle tbArticle) throws Exception;
 

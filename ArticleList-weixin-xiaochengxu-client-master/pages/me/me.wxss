@@ -1,28 +1,73 @@
 /* pages/me/me.wxss */
-.container{
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+}
+
+.info-container view {
+  width: 100%;
+  /**宽度*/
+  height: 100rpx;
+  /**高度指定*/
+  text-align: center;
+  /**文字居中*/
+  line-height: 100rpx;
+  /**文字居中*/
+}
+
+.info-container van-cell-group {
+  width: 100%;
+}
+
+.nickName {
+  margin-top: 25rpx;
+  margin-bottom: 25rpx;
+}
+
+.cellTitle {
+  text-align: left !important;
+
+}
+
+/* pages/me/login.wxss */
+.popup-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.container view{
-  width:100%; /**宽度*/
-  height:100rpx; /**高度指定*/
-  text-align: center; /**文字居中*/
-  line-height: 100rpx; /**文字居中*/
-}
 
-.container van-cell-group {
-  width:100%;
-}
-
-.headImg{
+.imageView {
+  display: inherit;
   margin-top: 50rpx;
+  flex-direction: inherit;
+  align-items: center;
 }
-.nickName{
-  margin-top: 25rpx;
-  margin-bottom: 25rpx;
-}
-.cellTitle{
-  text-align: left !important;
 
+
+.textView {
+  display: flex;
+  margin-top: 50rpx;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50rpx;
+}
+
+.titleText {
+  font-size: 40rpx;
+}
+
+.contentText {
+  color: #666;
+  font-size: 30rpx;
+  margin-bottom: 50rpx;
 }

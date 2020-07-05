@@ -2,8 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/article/detail",
-    "pages/me/me",
-    "pages/me/login"
+    "pages/me/me"
   ],
   "window": {
     "backgroundTextStyle": "light",

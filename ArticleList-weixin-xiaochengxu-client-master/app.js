@@ -6,8 +6,25 @@ App({
   getUserInfo:function(cb){
   },
   globalData:{
-    avatarUrl:'',
-    nickName:'',
-    score: 0
-  }
+     cacheKey:'3rdSession'
+  },
+
+  login:function(){
+    let _this = this
+    wx.login({
+        success:(res)=>{
+          if(res.code) {
+            wx.request({
+              method:'GET',
+              url: _this.ROOT_URL + '/api/wechat/user/login/' +res.code,
+              success:(res)=>{
+                  // 获取数据到缓存
+                  wx.setStorageSync(_this.globalData.cacheKey, res)
+              }
+            })
+          }
+        }
+    })
+      
+  },
 })

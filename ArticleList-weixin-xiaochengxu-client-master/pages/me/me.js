@@ -6,50 +6,75 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl:'',
-    nickName:'',
-    score: 0
+    userInfo: {},
+    score: 0,
+    show: false
   },
-  bindUserInfo:function(e){
+  bindGetUserInfo: function (res) {
+      if(res.detail.userInfo) {
+         this.setData({
+           userInfo:res.detail.userInfo,
+           show:false
+         })
+         app.login()
+      }
+  },
+
+  userAuthorization: function(){
       let _this = this;
-      this.data.avatarUrl = e.detail.userInfo.avatarUrl
-      console.log(e.detail.userInfo)
-      console.log(this.data)
-  },
-  userLogin:function(params) {
-    wx.login({
-      success(res) {
-        if(res.code) {
-          wx.request({
-            url: root_url + '/api/wechat/user/login/' + res.code,
-            success:(res)=>{
-              console.log(res.data)
-            }
-          })
-          console.log(res.code)
-        } else{
-          console.log("登陆失败")
+      wx.getSetting({
+        success:(res)=>{
+          if (res.authSetting['scope.userInfo']) {
+            wx.navigateTo({
+              // 已授权 跳转积分页
+              url: '../logs/logs',
+            })
+          } else {
+            _this.authModal()
+          }
         }
-      },
-    })
+      })
+  },
+
+
+  
+  onClose: function (res) {
+      this.setData({
+        show:false
+      })
+      wx.showToast({
+        title: '未授权，部分功能不可用',
+        icon:'none',
+        duration:1500
+      })
+
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     // 判断是否授权
+    let _this = this
     wx.getSetting({
-      success: function(res) {
-        console.log(res)
+      success:(res)=>{
         if (res.authSetting['scope.userInfo']) {
-            console.log('用户授权了')
-            // 调用接口获取用户信息
-        } else{
-            // 用户未授权 跳到授权页
-            wx.navigateTo({
-              url: 'login',
-            })
+          wx.getUserInfo({
+            success:(res)=>{
+              _this.setData({
+                userInfo:res.userInfo
+              })
+            }
+          })
+          wx.checkSession({
+            success:(res)=>{
+              console.log(res)
+            },
+            fail: () => {
+              console.log('error')
+                app.login()
+            },
+          })
         }
       }
     })
@@ -60,48 +85,62 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
+  },
+
+  authModal:function() {
+    let _this = this;
+    wx.showModal({
+      title:'请授权',
+      content:'该功能需要登陆后使用',
+      showCancel:false,
+      success:(res)=>{
+        _this.setData({
+          show:true
+        })
+      }
+    })
   }
 })

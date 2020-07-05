@@ -1,20 +1,23 @@
 package com.aaron.resource.website.controller.web;
 
+import cn.hutool.crypto.SecureUtil;
+import com.aaron.resource.website.dto.WxLoginVoucher;
 import com.aaron.resource.website.pojo.ListByIdBean;
 import com.aaron.resource.website.pojo.TbArticle;
 import com.aaron.resource.website.pojo.TbType;
 import com.aaron.resource.website.properties.MiniProgramProperties;
 import com.aaron.resource.website.service.ArticleService;
 import com.aaron.resource.website.service.TypeService;
+import com.aaron.resource.website.service.WxLoginService;
 import com.aaron.resource.website.utils.ConstantPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by huangtao on 17/1/9.
@@ -32,10 +35,17 @@ public class ApiController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @PutMapping("/wechat/user/login/{code}")
-    public Object wechatLogin(@PathVariable String code, @RequestBody Map<String, Object> map) {
+    @Autowired
+    private WxLoginService wxLoginService;
+
+    @GetMapping("/wechat/user/login/{code}")
+    public String wechatLogin(@PathVariable String code, HttpServletRequest request) {
         final String url = "https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code";
-        return restTemplate.getForEntity(url, String.class, miniProgramProperties.getAppId(), miniProgramProperties.getAppSecret(), code).getBody();
+        WxLoginVoucher voucher = restTemplate.getForObject(url, WxLoginVoucher.class, miniProgramProperties.getAppId(), miniProgramProperties.getAppSecret(), code);
+        wxLoginService.saveLoginUser(voucher);
+        String threeRdSession = SecureUtil.md5(voucher.getOpenid() + voucher.getSession_key());
+        request.getSession().setAttribute(threeRdSession, voucher);
+        return threeRdSession;
     }
 
     @RequestMapping("findByIdApi")
